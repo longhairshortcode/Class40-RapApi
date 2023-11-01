@@ -4,11 +4,13 @@ const MongoClient = require('mongodb').MongoClient
 const app = express()
 const PORT = 8080
 require('dotenv').config()
+const ejs = require('ejs')
 
 //connection to database
 let db,
     dbConnectionStr = process.env.DB_STRING,
-    dbName = "myRapNamesApi";
+    dbName = "rappersnamesdb";
+
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
@@ -16,8 +18,16 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         db = client.db(dbName)
     })    
 //all the app.use & app.set
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
+app.use(express.urlencoded({extended: true}))
 app.use(express.json())
-app.use(express)
+
+
+// app.get('/', (req, res) => {
+//     const data = { message: 'Hello, EJS!' };
+//     res.render('index', data);
+// });
 
 
 //ROUTE : app.get('/'...) + .catch(error => console.error(error))
