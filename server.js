@@ -42,14 +42,36 @@ app.get('/', (req, res)=>{
 
 
 //ROUTE : app.post + .catch(error => console.error(error))
-
+app.post('/addRapper', (req, res) => {
+    db.collection('rapperNames').insertOne({stageName: req.body.stageName,
+    birthName: req.body.birthName, likes: 0})
+    .then(result => {
+        console.log('Rapper Added')
+        res.redirect('/')
+    })
+    .catch(error => console.error(error))
+})
 
 
 
 //ROUTE : app.put with define object you want back + .catch(error => console.error(error))
+app.put('/addOneLike', (req, res) => {
+    db.collection('rapperNames').updateOne({stageName: req.body.stageName,
+    birthName: req.body.birthName, likes: req.body.likes},{
+    $set: {
+        likes: req.body.likes + 1
+    }
+},{
+    sort: {_id: -1},
+    upsert: true
+})
+.then(result => {
+    console.log('Added One Like')
+    res.json('Like Added')
+})
+.catch(error => console.error(error))
 
-
-
+})
 
 //ROUTE : app.delete + .catch(error => console.error(error))
 
