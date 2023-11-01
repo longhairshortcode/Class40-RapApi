@@ -9,7 +9,7 @@ const ejs = require('ejs')
 //connection to database
 let db,
     dbConnectionStr = process.env.DB_STRING,
-    dbName = "rappersnamesdb";
+    dbName = "RapperNamesDB";
 
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
