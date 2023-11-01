@@ -8,7 +8,7 @@ const PORT = 8080
 //connection to database
 let db,
     dbConnectionStr = process.env.DB_STRING
-    dbName = "RapperNamesDB"
+    dbName = "myRapNamesApi"
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
