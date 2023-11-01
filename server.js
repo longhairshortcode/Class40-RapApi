@@ -37,7 +37,7 @@ app.get('/', (req, res)=>{
         res.render('index.ejs', {info: data})
     })
     .catch(error => console.error(error))
-})
+});
 
 
 
