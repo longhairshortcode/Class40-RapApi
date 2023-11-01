@@ -3,12 +3,12 @@ const express = require('express')
 const MongoClient = require('mongodb').MongoClient
 const app = express()
 const PORT = 8080
-
+require('dotenv').config()
 
 //connection to database
 let db,
-    dbConnectionStr = process.env.DB_STRING
-    dbName = "myRapNamesApi"
+    dbConnectionStr = process.env.DB_STRING,
+    dbName = "myRapNamesApi";
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
@@ -22,9 +22,9 @@ app.use(express)
 
 //ROUTE : app.get('/'...) + .catch(error => console.error(error))
 app.get('/', (req, res)=>{
-    db.collection('rappers').find().sort({likes: -1}).toArray()
+    db.collection('rapperNames').find().sort({likes: -1}).toArray()
     .then(data => {
-        respond.render('index.ejs', {info: data})
+        res.render('index.ejs', {info: data})
     })
     .catch(error => console.error(error))
 })
