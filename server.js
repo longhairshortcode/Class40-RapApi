@@ -87,7 +87,7 @@ app.delete('/deleteRapper', (req, res) => {
 //CHAT TO DELETE NAN
 // Add a new route to delete entries with "null" stageName, "null" birthName, and "NaN" likes
 app.delete('/deleteNullOrNaNRapper', (req, res) => {
-    const stageNames = req.body.stageName;
+    const stageName = req.body.stageName;
     const birthName = req.body.birthName;
     const likes = req.body.likes;
 
