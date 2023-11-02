@@ -52,7 +52,7 @@ async function addLike(){
         console.log(data)
         location.reload()
 
-    }catch(err){
+    }catcher(err){
         console.log(err)
     }
 }
