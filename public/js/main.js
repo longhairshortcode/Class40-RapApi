@@ -48,7 +48,7 @@ async function addLike(){
               'likes': tLikes
             })
           })
-        const data = await res.json()
+        const datan = await res.json()
         console.log(data)
         location.reload()
 
