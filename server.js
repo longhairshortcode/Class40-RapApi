@@ -74,9 +74,43 @@ app.put('/addOneLike', (req, res) => {
 })
 
 //ROUTE : app.delete + .catch(error => console.error(error))
+app.delete('/deleteRapper', (req, res) => {
+    db.collection('rapperNames').deleteOne({stageName: req.body.stageName})
+    .then(result => {
+        console.log('Rapper Deleted')
+        res.json('Rapper Deleted')
+    })
+    .catch(error => console.error(error))
 
+})
 
+//CHAT TO DELETE NAN
+// Add a new route to delete entries with "null" stageName, "null" birthName, and "NaN" likes
+app.delete('/deleteNullOrNaNRapper', (req, res) => {
+    const stageName = req.body.stageName;
+    const birthName = req.body.birthName;
+    const likes = req.body.likes;
 
+    console.log('Received DELETE request with data:');
+    console.log('Stage Name:', stageName);
+    console.log('Birth Name:', birthName);
+    console.log('Likes:', likes);
+
+    // Check if stageName is "null," birthName is "null," and likes is "NaN"
+    if (stageName === 'null' && birthName === 'null' && isNaN(likes)) {
+        console.log('Deleting rapper entry...');
+        db.collection('rapperNames').deleteOne({ stageName, birthName, likes })
+            .then(result => {
+                console.log('Rapper Deleted');
+                res.json('Rapper Deleted');
+            })
+            .catch(error => console.error('Error deleting rapper:', error));
+    } else {
+        // Handle the case where stageName, birthName, or likes are not in the expected state
+        console.log('Invalid data for deletion.');
+        res.json('Invalid data for deletion.');
+    }
+});
 
 //ROUTE : app.listen 
 app.listen(process.env.PORT || PORT, () => {
