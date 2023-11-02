@@ -9,8 +9,8 @@ Array.from(deleteTrash).forEach((element)=>{
 
 // the deleteRapper function after trash icon is clicked
 async function deleteRapper(){
-    const sName = this.parentNode.childNodes[0].innerText
-    const bName = this.parentNode.childNodes[1].innerText
+    const sName = this.parentNode.childNodes[1].innerText
+    const bName = this.parentNode.childNodes[3].innerText
     try{
         const res = await fetch('deleteRapper', {
             method: 'delete',
