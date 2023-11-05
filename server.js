@@ -96,10 +96,7 @@ app.listen(process.env.PORT || PORT, () => {
     console.log(`Sever is running on port ${PORT}`)
 })
 
-//COPY ROUTE : app.listen 
-app.listen(process.env.PORT || PORT, () => {
-    console.log(`Sever is running on port ${PORT}`)
-})
+
 
 
 
