@@ -96,6 +96,10 @@ app.listen(process.env.PORT || PORT, () => {
     console.log(`Sever is running on port ${PORT}`)
 })
 
+app.listen(process.env.PORT || PORT, () => {
+    console.log(`Sever is running on port ${PORT}`)
+})
+
 
 
 
